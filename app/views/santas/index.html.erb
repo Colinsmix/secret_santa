@@ -1,0 +1,6 @@
+<h1>All the Santas</h1>
+<div class="list-group">
+<% @santas.each do |santa| %>
+  <%= link_to santa.name, santa_path(santa), class: 'list-group-item' %>
+<% end %>
+</div>

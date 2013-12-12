@@ -1,0 +1,28 @@
+<h1>You found Secret Santa <%= @santa.name %></h1>
+<h3>Participants</h3>
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Number</th>
+  <tr>
+  <% @santa.participants.each do |participant| %>
+    <tr>
+      <td><%= participant.name %></td>
+      <td><%= participant.email %></td>
+      <td><%= participant.number %></td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to 'Edit this group', edit_santa_path(@santa), class: 'btn btn-primary' %>
+<% if !@santa.match %>
+  <%= link_to 'Secret Santasize this group', match_santa_path(@santa), class: 'btn btn-primary' %>
+<% else %>
+  <% @santa.show_matches.each do |pair|%>
+  <ul class='list-group santa-match'>
+    <% pair.each_with_index do |individual, index| %>
+      <li class='list-group-item'><%= index == 0 ? "Giver: #{individual}" : "Receiver: #{individual}" %></li>
+    <% end %>
+  </ul>
+  <% end %>
+<% end %>
