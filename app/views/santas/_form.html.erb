@@ -1,6 +1,7 @@
 <h1><%= @santa.name ? 'Edit' : 'New' %> Secret Santa </h1>
 <%= simple_form_for @santa do |f| %>
   <%= f.input :name %>
+  <%= f.input :rules, as: :text %>
   <h3>Participants</h3>
   <%= f.simple_fields_for :participants do |participant| %>
     <%= render 'participant_fields', :f =>  participant %>

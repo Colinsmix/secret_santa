@@ -38,7 +38,7 @@ class SantasController < ApplicationController
   def email
     @santa = Santa.find(params[:id])
     @santa.get_matches.each_slice(2).to_a.each do |pair|
-      SantaMailer.secret_santa_email(Participant.find(pair[0]), Participant.find(pair[1])).deliver
+      SantaMailer.secret_santa_email(Participant.find(pair[0]), Participant.find(pair[1]), @santa).deliver
     end
     @santa.notify
     redirect_to santa_path(@santa), notice: 'You Secret Santa participants have been notified!'
@@ -55,6 +55,6 @@ class SantasController < ApplicationController
 
   private
   def santa_params
-    params.require(:santa).permit(:name, :match,  participants_attributes: [:id, :name, :number, :email, :_destroy])
+    params.require(:santa).permit(:name, :rules, :match,  participants_attributes: [:id, :name, :number, :email, :_destroy])
   end
 end

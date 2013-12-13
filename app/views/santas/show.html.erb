@@ -1,4 +1,6 @@
-<h1>You found Secret Santa <%= @santa.name %></h1>
+<h1><%= @santa.name.upcase %></h1>
+<h3>Rules</h3>
+<p><%= @santa.rules %></p>
 <h3>Participants</h3>
 <table class="table table-striped">
   <tr>
