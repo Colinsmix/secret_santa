@@ -29,9 +29,19 @@ class SantasController < ApplicationController
 
   def match
     @santa = Santa.find(params[:id])
+    @santa.lock
     @santa.match = @santa.get_matches
     @santa.save!
     redirect_to santa_path(@santa), notice: 'Matches Made!!'
+  end
+
+  def email
+    @santa = Santa.find(params[:id])
+    @santa.get_matches.each_slice(2).to_a.each do |pair|
+      SantaMailer.secret_santa_email(Participant.find(pair[0]), Participant.find(pair[1])).deliver
+    end
+    @santa.notify
+    redirect_to santa_path(@santa), notice: 'You Secret Santa participants have been notified!'
   end
 
   def update

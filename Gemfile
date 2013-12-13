@@ -32,6 +32,8 @@ gem 'devise'
 
 gem 'cocoon'
 
+gem 'state_machine'
+
 group :test, :development do
   gem 'pry-rails'
 end

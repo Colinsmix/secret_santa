@@ -5,6 +5,7 @@ SecretSanta::Application.routes.draw do
   resources :santas do
     member do
       get 'match'
+      get 'email'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
