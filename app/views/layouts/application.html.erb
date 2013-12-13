@@ -7,7 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render partial: 'layouts/nav'%>
+<canvas id="canvas"></canvas>
+<%= yield :extra_footer %>
+<%= render partial: 'shared/nav'%>
 <% if alert %>
   <p class="alert alert-warning alert-dismissable">
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

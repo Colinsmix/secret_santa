@@ -1,6 +1,14 @@
+body {
+  background-color: lightgray;
+}
+
 .navbar {
   margin-bottom: 0px;
 }
 .santa-match {
   margin-top: 0.5em;
+}
+
+#canvas {
+  position:absolute;top:0;left:0;
 }
