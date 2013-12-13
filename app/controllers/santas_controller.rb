@@ -1,6 +1,7 @@
 class SantasController < ApplicationController
   before_filter :authenticate_user!
-
+  before_filter :is_owner, only: [:show, :edit, :match, :email]
+  
   def new
     @santa = Santa.new
   end
@@ -56,5 +57,11 @@ class SantasController < ApplicationController
   private
   def santa_params
     params.require(:santa).permit(:name, :rules, :match,  participants_attributes: [:id, :name, :number, :email, :_destroy])
+  end
+
+  def is_owner
+    if current_user && current_user != Santa.find(params[:id]).user
+      redirect_to root_path, notice: 'You can only see your own Secret Santa'
+    end
   end
 end
