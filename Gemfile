@@ -39,9 +39,17 @@ group :test, :development do
 end
 
 group :test do
+  gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'shoulda'
+  gem 'valid_attribute'
+  gem 'launchy'
+  gem 'poltergeist'
+end
+
+group :development do
+  gem 'quiet_assets'
 end
 
 gem 'rails_12factor', group: :production

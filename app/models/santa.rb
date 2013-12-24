@@ -2,6 +2,8 @@ class Santa < ActiveRecord::Base
   belongs_to :user
   has_many :participants
 
+  validates_presence_of :name
+
   accepts_nested_attributes_for :participants, allow_destroy: true
 
   state_machine :state, :initial => :editable do
